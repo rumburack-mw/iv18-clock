@@ -11,13 +11,13 @@
 // FCY = Fosc/2	
 // ======================================================= 
 
-#define Fin  7372800UL									// Kmitocet krystalu
+#define Fin  7372800UL									// Xtal freq
 
 #if((Fin < 3500000) || (Fin > 25000000))
 # error "Krystal musi byt v rozsahu 3.5 - 25MHz" 
 #endif 
 
-#define FCY 40000000									// Pozadovane MIPs
+#define FCY 40000000									// Required MIPs
 
 #if(FCY > 71000000)
 # error "Pozadovana frekvence jadra FCY  > 70MIPs" 
@@ -41,13 +41,13 @@
 
 
 #define _TMR_FREQ(a)	(int)((float)FCY/(float)a)
-// Kmitocet blikani ledkou
+// LED fpashing freq
 #define F_LED_BLIK	10	//Hz
 
 #define SET_MODE_TIMEOUT	2000000
 
 
-// Porty definice smeru
+// I/O direction
 #define PORT_DIR_IN		1
 #define PORT_DIR_OUT	0
 
@@ -78,13 +78,13 @@
 
 
 
-// Kody znaku
+// Codes of chars
 #define SPACE	10
 #define MINUS	11
 #define GRAD	12
 #define C		13
 
-// Tvary cislic
+// Map of chars
 //            DCEGBAF
 #define _0		0b1110111
 #define _1		0b0100100
@@ -104,7 +104,7 @@
 
 
 
-// Anody
+// Anodes
 #define _A0	0b0100000000000000000
 #define _A1	0b0000000010000000000
 #define _A2	0b0010000000000000000

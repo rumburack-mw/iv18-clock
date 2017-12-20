@@ -6,11 +6,11 @@
 
 
 // Configuracni bity MCU
-_FOSCSEL(FNOSC_FRC)								// Po resetu jede na vnitrni oscilator
+_FOSCSEL(FNOSC_FRC)								// After reset is inernal clock generator enabled
 _FOSC(FCKSM_CSECMD & OSCIOFNC_OFF & POSCMD_XT)	//
-_FWDT(FWDTEN_OFF)								// Wdog vyp	
+_FWDT(FWDTEN_OFF)								// Wdog off
 _FPOR(FPWRT_PWR128)								
-_FICD(ICS_PGD2 & JTAGEN_OFF)					// Vypnout JTAG	
+_FICD(ICS_PGD2 & JTAGEN_OFF)					// JTAG	off
 //---------------------------------------------------
 
  void ini_tim1(void)      {        // initialization of TIMER1 
@@ -22,29 +22,28 @@ _FICD(ICS_PGD2 & JTAGEN_OFF)					// Vypnout JTAG
 
 
 int main(){
-// MCU jede po resetu na vnitrni RC oscilator 7.37 MHz
-/* Konfigurace oscilatoru pro beh na xxMhz a xtal. oscilatoru:
+// After reset is inernal RC oscilator 7.37 MHz enabled
+/* Config PLL for external Xtal oscillator
    Fosc= Fin*M/(N1*N2), Fcy=Fosc/2
    Fosc= 7.3728*(43)/(2*2)=80Mhz for Fosc, Fcy = 40Mhz */
 
-// Konfigurace PLL preddelicky, PLL delicky, PLL nasobicky 
 
 	PLLFBDbits.PLLDIV	= PLLdiv;
 	CLKDIVbits.PLLPOST 	= PLLpost;		
 	CLKDIVbits.PLLPRE 	= PLLpre;		
 	OSCTUN = 0;			
 
-// Priprava multiplexeru hodin pro prepnuti zdroje hodin XT_PLL (NOSC = 0b011)
-    __builtin_write_OSCCONH(0x03);		//Novy zdroj hodin - XTAL w/ PLL 
+// Preparation of clock source multiplexer to XT_PLL (NOSC = 0b011)
+    __builtin_write_OSCCONH(0x03);		//New source - XTAL w/ PLL 
     __builtin_write_OSCCONL(0x01);  	//Enable Switch
 
-	while(OSCCONbits.COSC != 0x03);		//Cekani, nez dojde k prepnuti zdroje hodin 
-   	while(OSCCONbits.LOCK != 1);		//Cekani na zaveseni PLL hodin
+	while(OSCCONbits.COSC != 0x03);		//Wait for good switching
+   	while(OSCCONbits.LOCK != 1);		//Wait for PLL lock
 
 // ====================== A jedeme na TURBO ... ==============================================
 
 //Konfigurace pinu MCU 
-  __builtin_write_OSCCONL(OSCCON & ~(1<<6));  		// Odemkni konfiguracni registr
+  __builtin_write_OSCCONL(OSCCON & ~(1<<6));  		// Unlock config register for remappable pins
 
 // UART1
 //	RPINR18bits.U1RXR 		= 10; 					// RP10 ->UART1_RX	
@@ -53,9 +52,9 @@ int main(){
 	RPOR7bits.RP14R			= 0b10011;     			// RP14 ->OC2
 //	RPOR4bits.RP9R			= 0b10100;     			// RP9 ->OC3
 
-	__builtin_write_OSCCONL(OSCCON |(1<<6));		// Zamkni konfiguracni registr  
+	__builtin_write_OSCCONL(OSCCON |(1<<6));		// Config register lock  
 
-	ADPCFG	 	= 0xffff;    	// Nastaveni vsech moznych analogovych  pinu do digitalnido modu,
+	ADPCFG	 	= 0xffff;    	// All analog inputs to digital mode
 
 TRISBbits.TRISB8 = 1;
 TRISBbits.TRISB9 = 1;		           // RB8 = SCL1, RB9 = SDA1 = inputs;

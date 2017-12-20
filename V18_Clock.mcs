@@ -2,7 +2,7 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\main.o
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\main.o
 Folder=Intermediary
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -15,7 +15,7 @@ ToolArgsString=-g -Wall -Os
 TraceCmdString=
 DebugOptions=
 [File001]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\timer_3.o
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\timer_3.o
 Folder=Intermediary
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -28,7 +28,7 @@ ToolArgsString=-g -Wall -Os
 TraceCmdString=
 DebugOptions=
 [File002]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\timer_2.o
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\timer_2.o
 Folder=Intermediary
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -41,7 +41,7 @@ ToolArgsString=-g -Wall -Os
 TraceCmdString=
 DebugOptions=
 [File003]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\clock.o
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\clock.o
 Folder=Intermediary
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -54,7 +54,7 @@ ToolArgsString=-g -Wall -Os
 TraceCmdString=
 DebugOptions=
 [File004]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\i2c_func.o
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\i2c_func.o
 Folder=Intermediary
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -67,7 +67,7 @@ ToolArgsString=-g -Wall -Os
 TraceCmdString=
 DebugOptions=
 [File005]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\i2c_rtcc_func.o
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\i2c_rtcc_func.o
 Folder=Intermediary
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -80,7 +80,7 @@ ToolArgsString=-g -Wall -Os
 TraceCmdString=
 DebugOptions=
 [File006]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\V18_Clock.cof
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\V18_Clock.cof
 Folder=Output
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -93,7 +93,7 @@ ToolArgsString=-o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)" -Map="$(BINDIR_)$(TAR
 TraceCmdString=
 DebugOptions=
 [File007]
-Location=D:\Akce_bastleni\DsPic33\V18_Clock\20171025tmp\V18_Clock.hex
+Location=C:\Users\zr\Documents\GitHub\iv18-clock\V18_Clock.hex
 Folder=Output
 DeviceName=dsPIC33FJ128GP202
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}

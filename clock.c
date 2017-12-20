@@ -83,7 +83,7 @@ void clock(void){
 				SetHrsBCD 	= HrsBCD & 0xc0;		// Store setting bits
 				SetHrs		= Hrs;
 				SetState	= SET_HOURS;
-// Timer timeoutu ... future ...
+// Timer for timeout if inactivity in SET mode
 				sw_timer3 	= SET_MODE_TIMEOUT;
 			}
 // Set display temperature 
@@ -144,7 +144,7 @@ void clock(void){
 				if(--SetMin < 0) SetMin = 59;
 				sw_timer3 	= SET_MODE_TIMEOUT;
 			}
-			if(!sw_timer3){								// Setmode timeout
+			if(!sw_timer3){								// Setmode inactivity timeout
 					SetState	= DISP_CLOCK;
 			}
 			if(SetModePlus.puls){
@@ -254,13 +254,13 @@ void toggle(t_toggle *toggle){
 void debouncer(t_debouncer *debouncer, unsigned int volatile sample){
 unsigned int volatile bitschanged;
 	if(sample && !debouncer->sample_old){
-		bitschanged = debouncer->laststate ^ debouncer->input;					// XOR zjisti zmenene bity od posledne
+		bitschanged = debouncer->laststate ^ debouncer->input;					// XOR for evatution of change
 		debouncer->debounced = (debouncer->debounced & bitschanged) | (debouncer->input & (~bitschanged));
 		debouncer->last_state_debounced = debouncer->debounced;
 		debouncer->laststate = debouncer->input;
 	}
 	debouncer->sample_old = sample;
-// Generovani pulsu	nabezne hrany
+// Ascendig edge (puls only)
 	debouncer->puls = debouncer->debounced && (!debouncer->state_debounced_old);
 	debouncer->state_debounced_old = debouncer->debounced;
 }

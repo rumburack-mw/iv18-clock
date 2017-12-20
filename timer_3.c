@@ -15,20 +15,20 @@ int volatile Max6921BitCounter;
 
 t_Max6921_State volatile Max6921_State;
 
-int volatile Diplay[NO_OF_SEGMENTS];	// Cislice
-int volatile Bright[NO_OF_SEGMENTS];	// Zvyrazneni	
+int volatile Diplay[NO_OF_SEGMENTS];	// Digits
+int volatile Bright[NO_OF_SEGMENTS];	// Brightness	
 int volatile Anode_Pointer, Number;
 
 void MakeDisplay(void);
 
 void timer3init(void){
 // Timer 3 
-// Nastaveni preddelicu na 1/1
+// Prescaller to 1/1
 	T3CONbits.TCKPS		= 0;
 // Period registers for Timer 3 									
 	PR3= 200;//(unsigned int)((float)FCY/FPWM);
 	T3CONbits.TON 		= 1;		// start Timer 3										
-// A jeste povolit preruseni a nastavit priority...
+// Interrupt and priority...
 	IEC0bits.T3IE		= 1;		// enable global T3 interrupt 
 	IPC2bits.T3IP		= 3;		// interrupt priority 4	
 
@@ -39,16 +39,16 @@ void timer3init(void){
 void __attribute__((__interrupt__,auto_psv)) _T3Interrupt (void){
 	IFS0bits.T3IF = 0;  							// interrupt acknowledge      
 
-// Blikaci bit
+// Flashing bit
 	Blik_1ms ^= 1;
 
-// SW Timery
+// SW Timers
 	if(sw_timer0) sw_timer0--;
 	if(sw_timer1) sw_timer1--;
 	if(sw_timer2) sw_timer2--;
 	if(sw_timer3) sw_timer3--;
 
-// Komunikace s MAXem
+// Send data to MAX 
 
 	switch(Max6921_State){
 		case MAX6921_RESET:	// Reset MAX6921
@@ -106,7 +106,7 @@ void __attribute__((__interrupt__,auto_psv)) _T3Interrupt (void){
 }
 
 // ------------------------------------------------
-// Anody
+// Anodes
 void MakeDisplay(void){
 		switch(Anode_Pointer){
 			case 0:
@@ -137,7 +137,7 @@ void MakeDisplay(void){
 				break;
 		}
 // ------------------------------------------------
-// Tvary znaku
+// Digits map
 		switch(Diplay[Anode_Pointer]){
 			case 0:
 				DisplayMapToSend	|= _0;		
